@@ -11,6 +11,8 @@ import java.util.*
 class MainViewModel {
     var repoModel: RepoModel = RepoModel()  //экземпляр класса model
     val text = ObservableField<String>()    //оборачиваем объекты для наблюдения за ними (dataBinding)
+    val textBtn1 = ObservableField("loading")    //оборачиваем объекты для наблюдения за ними (dataBinding)
+    val textBtn2 = ObservableField("refresh")    //оборачиваем объекты для наблюдения за ними (dataBinding)
     val isLoading = ObservableField<Boolean>()
 
     //метод отвечающий за обновление данных
