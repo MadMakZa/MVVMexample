@@ -39,16 +39,29 @@
             app:layout_constraintStart_toStartOf="@+id/repository_name"
             app:layout_constraintTop_toBottomOf="@+id/repository_name" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repository_rv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.isLoading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/refresh_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/rv_item_repository" />
+
         <Button
             android:id="@+id/refresh_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:text="@{viewModel.isLoading() ? viewModel.textBtn1 : viewModel.textBtn2}"
-            android:onClick="@{() -> viewModel.refresh()}"
+            android:onClick="@{() -> viewModel.loadRepositories()}"
             android:clickable="@{viewModel.isLoading ? false : true}"
             app:layout_constraintEnd_toEndOf="@+id/progressBar"
             app:layout_constraintStart_toStartOf="@+id/progressBar"
             app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

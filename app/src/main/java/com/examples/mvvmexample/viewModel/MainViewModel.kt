@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.examples.mvvmexample.model.OnDataReadyCallback
 import com.examples.mvvmexample.model.OnRepositoryReadyCallback
 import com.examples.mvvmexample.model.RepoModel
+import com.examples.mvvmexample.model.Repository
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,16 +28,16 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    //вызывает refreshData у RepoModel, который в аргументах берёт реализацию OnDataReadyCallback
-    fun refresh(){
-        isLoading.set(true)
-        repoModel.refreshData(object : OnDataReadyCallback {
-            override fun onDataReady(data: String) {
-                isLoading.set(false)
-                text.set(data)
-            }
-        })
-    }
+//    //вызывает refreshData у RepoModel, который в аргументах берёт реализацию OnDataReadyCallback
+//    fun refresh(){
+//        isLoading.set(true)
+//        repoModel.refreshData(object : OnDataReadyCallback {
+//            override fun onDataReady(data: String) {
+//                isLoading.set(false)
+//                text.set(data)
+//            }
+//        })
+//    }
 
     //получить репозитории
     fun loadRepositories(){
