@@ -1,6 +1,7 @@
 package com.examples.mvvmexample.viewModel
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import com.examples.mvvmexample.model.OnDataReadyCallback
 import com.examples.mvvmexample.model.RepoModel
 import java.util.*
@@ -8,7 +9,7 @@ import java.util.*
 /**
  * ViewModel - logic
  */
-class MainViewModel {
+class MainViewModel : ViewModel() {
     var repoModel: RepoModel = RepoModel()  //экземпляр класса model
     val text = ObservableField<String>()    //оборачиваем объекты для наблюдения за ними (dataBinding)
     val textBtn1 = ObservableField("loading")    //оборачиваем объекты для наблюдения за ними (dataBinding)
