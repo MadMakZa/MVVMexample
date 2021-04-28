@@ -1,6 +1,7 @@
 package com.examples.mvvmexample.viewModel
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.examples.mvvmexample.model.OnDataReadyCallback
 import com.examples.mvvmexample.model.OnRepositoryReadyCallback
@@ -18,7 +19,7 @@ class MainViewModel : ViewModel() {
     val textBtn1 = ObservableField("loading")    //оборачиваем объекты для наблюдения за ними (dataBinding)
     val textBtn2 = ObservableField("refresh")    //оборачиваем объекты для наблюдения за ними (dataBinding)
     val isLoading = ObservableField<Boolean>()
-    var repositories = ArrayList<Repository>()
+    var repositories = MutableLiveData<ArrayList<Repository>>()
 
     //метод отвечающий за обновление данных
     val onDataReadyCallback = object : OnDataReadyCallback{
@@ -28,16 +29,6 @@ class MainViewModel : ViewModel() {
         }
     }
 
-//    //вызывает refreshData у RepoModel, который в аргументах берёт реализацию OnDataReadyCallback
-//    fun refresh(){
-//        isLoading.set(true)
-//        repoModel.refreshData(object : OnDataReadyCallback {
-//            override fun onDataReady(data: String) {
-//                isLoading.set(false)
-//                text.set(data)
-//            }
-//        })
-//    }
 
     //получить репозитории
     fun loadRepositories(){
@@ -45,7 +36,7 @@ class MainViewModel : ViewModel() {
         repoModel.getRepositories(object : OnRepositoryReadyCallback{
             override fun onDataReady(data: ArrayList<Repository>) {
                 isLoading.set(false)
-                repositories = data
+                repositories.value = data
             }
         })
     }

@@ -18,6 +18,9 @@ class RepositoryRecyclerViewAdapter(private var items: ArrayList<Repository>, pr
             = holder.bind(items[position], listener)
 
     override fun getItemCount(): Int = items.size
+    fun replaceData(it: ArrayList<Repository>) {
+
+    }
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
